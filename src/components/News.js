@@ -29,6 +29,13 @@ export class News extends Component {
             
         }
     }
+    async updateNews() {
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=53fcaaaa4330426c8098f7fcc5002940&page=${this.state.page}&pageSize=${this.props.pageSize}`
+        let data = await fetch(url);
+        let parseData = await data.json()
+        console.log(parseData);
+        this.setState({ articles: parseData.articles, totalResults : parseData.totalResults})
+}
 
     async componentDidMount() {
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=53fcaaaa4330426c8098f7fcc5002940&page=1&pageSize=${this.props.pageSize}`
@@ -80,10 +87,10 @@ export class News extends Component {
 
                     {this.state.articles.map((element) => {
                         return <div className="col-md-4" key={element.url}>
-                            <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imageUrl={element.urlToImage} newsUrl={element.url} />
+                            <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
 
                         </div>
-                    })}
+                    })}``
 
                 </div>
                 <div className="contanier d-flex justify-content-between">
