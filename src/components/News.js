@@ -11,23 +11,28 @@ export class News extends Component {
         pageSize: 9,
         category:'general'
     }
-    
+    c
     static propTypes = {
         country: PropTypes.string,
         pageSize: PropTypes.number,
         category: PropTypes.string
     }
 
-    constructor() {
-        super();
+    capatizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1)
+    }
+
+    constructor(props) {
+        super(props);
         console.log("Hello i am constructor")
         this.state = {
             articles: [],
-            loading: false,
+            loading: true,
             page: 1,
-            // totalResults:20  //giving bug without it
+            totalResults:15  //giving bug without it
             
         }
+        document.title = `NewsChunky-${this.capatizeFirstLetter(this.props.category)}`
     }
     async updateNews() {
         const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=53fcaaaa4330426c8098f7fcc5002940&page=${this.state.page}&pageSize=${this.props.pageSize}`
@@ -83,7 +88,7 @@ export class News extends Component {
     render() {
         return (
             <div className="container my-3">
-                <h2 className = "text-center"> NewsChunky - Top Headlines</h2>
+                <h2 className="text-center"> NewsChunky - Top Headlines from {this.capatizeFirstLetter(this.props.category)}</h2>
                 <div className="row">
 
                     {this.state.articles.map((element) => {
