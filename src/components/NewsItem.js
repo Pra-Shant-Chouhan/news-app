@@ -3,7 +3,7 @@ import React from 'react'
 const NewsItem = (props) => {
 
     let { title, description, imageUrl, newsUrl, author, date, source } = props;
-    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
     return (
         <div className="my-3">
             <div className="card" style={{ width: "18rem" }}>
