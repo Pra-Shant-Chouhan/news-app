@@ -37,16 +37,16 @@ const News = (props) => {
     }
 
     useEffect(() => {
-        document.title = `NewsChunky-${capatizeFirstLetter(props.category)}`
+        document.title = `NewsChunkey-${capatizeFirstLetter(props.category)}`
         updateNews();
-
+        // eslint-disable-next-line 
     }, [])
 
 
 
     const fetchMoreData = async () => {
+        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}&pageSize=${props.pageSize}`
         setpage(page + 1)
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`
         let data = await fetch(url);
         let parseData = await data.json()
         console.log(parseData);
@@ -98,11 +98,11 @@ const News = (props) => {
 
     return (
         <>
-            
-            <h2 className="text-center" style={{ marginTop:'10vh'}}> NewsChunky - Top Headlines from {capatizeFirstLetter(props.category)}</h2>
+
+            <h2 className="text-center" style={{ marginTop: '10vh' }}> NewsChunkey - Top Headlines from {capatizeFirstLetter(props.category)}</h2>
             {loading && <Spinner />}
 
-        
+
             <InfiniteScroll
                 dataLength={articles.length}
                 next={fetchMoreData}
