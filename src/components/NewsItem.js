@@ -3,7 +3,7 @@ import React from 'react'
 const NewsItem = (props) => {
 
     let { title, description, imageUrl, newsUrl, author, date, source } = props;
-
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     return (
         <div className="my-3">
             <div className="card" style={{ width: "18rem" }}>
@@ -16,7 +16,7 @@ const NewsItem = (props) => {
                     <p className="card-text">{description}</p>
                     <a href={newsUrl} taget="_blank" className="btn btn-sm btn-success">Read More</a>
                     <div className="card-footer">
-                        <small className="text-muted">By {author ? author : "Unknown"} on <b><em>Time:-{new Date(date).toLocaleTimeString()}</em> & Date:{new Date(date).toLocaleDateString()}</b> </small>
+                        <small className="text-muted">By {author ? author : "Unknown"} on <b><em>Time:-{new Date(date).toLocaleTimeString()}</em> & Date:{new Date(date).toLocaleDateString("en-US", options)}</b> </small>
                     </div>
                 </div>
             </div>
