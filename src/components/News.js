@@ -98,8 +98,11 @@ const News = (props) => {
 
     return (
         <>
-            <h2 className="text-center"> NewsChunky - Top Headlines from {capatizeFirstLetter(props.category)}</h2>
+            
+            <h2 className="text-center" style={{ marginTop:'10vh'}}> NewsChunky - Top Headlines from {capatizeFirstLetter(props.category)}</h2>
             {loading && <Spinner />}
+
+        
             <InfiniteScroll
                 dataLength={articles.length}
                 next={fetchMoreData}
